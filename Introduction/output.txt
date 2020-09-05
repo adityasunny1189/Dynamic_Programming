@@ -1,0 +1,10 @@
+Top-Down: 2
+Bottom-Up: 2
+Top-Down: 3
+Bottom-Up: 3
+Top-Down: 2
+Bottom-Up: 2
+Top-Down: 3
+Bottom-Up: 3
+Top-Down: 4
+Bottom-Up: 4
