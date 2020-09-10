@@ -45,6 +45,38 @@ int minCostMemo(int **arr, int sm, int sn, int m, int n, int **dp) {
 	return ans;
 }
 
+// Dynamic Programming
+int minCostDP(int **arr, int sm, int sn, int m, int n) {
+	int **dp = new int*[m + 1];
+	for(int i = 0; i <= m; i++) {
+		dp[i] = new int[n + 1];
+		for(int j = 0; j <= n; j++) {
+			dp[i][j] = -1;
+		}
+	}
+
+	dp[m][n] = arr[m][n];
+
+	// Last Row
+	int i = m;
+	for(int j = n - 1; j >= 0; j--) {
+		dp[i][j] = arr[i][j] + dp[i][j + 1];
+	}
+
+	// Last Column
+	i = n;
+	for(int j = m - 1; j >= 0; j--) {
+		dp[j][i] = arr[j][i] + dp[j + 1][i];
+	}
+
+	for(int i = m - 1; i >= 0; i--) {
+		for(int j = n - 1; j >= 0; j--) {
+			dp[i][j] = min(min(dp[i + 1][j + 1], dp[i + 1][j]), dp[i][j + 1]) + arr[i][j];
+		}
+	}
+	return dp[0][0];
+}
+
 int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
@@ -69,4 +101,6 @@ int main() {
 
 	int minCostPath = minCostMemo(arr, 0, 0, m - 1, n - 1, dp);
 	cout << minCostPath << endl;
+
+	cout << minCostDP(arr, 0, 0, m - 1, n - 1) << endl;
 }
