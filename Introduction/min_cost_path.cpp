@@ -29,23 +29,17 @@ int minCostMemo(int **arr, int sm, int sn, int m, int n, int **dp) {
 	if(sm == m && sn == n) {
 		return arr[sm][sn];
 	}
-
-	int op1, op2, op3;
-	op1 = op2 = op3 = INT_MAX;
+	if(sm > m || sn > n) {
+		return INT_MAX;
+	}
 	if(dp[sm][sn] != 0) {
 		return dp[sm][sn];
 	}
-	if(sm < m && sn < n) {
-		op1 = minCostMemo(arr, sm + 1, sn + 1, m, n, dp);
-		op2 = minCostMemo(arr, sm + 1, sn, m, n, dp);
-		op3 = minCostMemo(arr, sm, sn + 1, m, n, dp);
-	}
-	else if(sm < m) {
-		op1 = minCostMemo(arr, sm + 1, sn, m, n, dp);
-	}
-	else if(sn < n) {
-		op1 = minCostMemo(arr, sm, sn + 1, m, n, dp);
-	}
+	int op1, op2, op3;
+	op1 = op2 = op3 = INT_MAX;
+	op1 = minCostMemo(arr, sm + 1, sn + 1, m, n, dp);
+	op2 = minCostMemo(arr, sm + 1, sn, m, n, dp);
+	op3 = minCostMemo(arr, sm, sn + 1, m, n, dp);
 	int ans = arr[sm][sn] + min(min(op1, op2), op3);
 	dp[sm][sn] = ans;
 	return ans;
