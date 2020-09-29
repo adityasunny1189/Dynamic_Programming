@@ -30,15 +30,15 @@ int winesPriceMemo(int *arr, int i, int j, int year, int **dp) {
 int main() {
 	// freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
-	int arr[] = {2, 3, 5};
-	int **dp = new int*[3];
-	for(int i = 0; i < 3; i++) {
-		dp[i] = new int[3];
-		for(int j = 0; j < 3; j++) {
+	int arr[] = {2, 4, 5, 6, 3, 1};
+	int **dp = new int*[6];
+	for(int i = 0; i < 6; i++) {
+		dp[i] = new int[6];
+		for(int j = 0; j < 6; j++) {
 			dp[i][j] = 0;
 		}
 	}
-	int price = winesPrice(arr, 0, 2, 1);
-	int priceMemo = winesPriceMemo(arr, 0, 2, 1, dp);
+	int price = winesPrice(arr, 0, 5, 1);
+	int priceMemo = winesPriceMemo(arr, 0, 5, 1, dp);
 	cout << price << " " << priceMemo << endl;
 }
